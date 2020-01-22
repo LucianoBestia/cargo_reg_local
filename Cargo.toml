@@ -1,0 +1,18 @@
+[package]
+name = "cargo_reg_local"
+version = "1.0.0"
+authors = ["Luciano Bestia <luciano.bestia@gmail.com>"]
+edition = "2018"
+description="find data from crates.io in local cache"
+repository = "https://github.com/LucianoBestia/cargo_reg_local"
+readme = "README.md"
+license = "MIT"
+keywords = ["rust", "crate.io", "cargo"]
+categories = ["crates"]
+publish = false
+
+[dependencies]
+unwrap = "1.2.1"
+clap = "2.33.0"
+ansi_term = "0.12.1"
+dirs="2.0.2"
