@@ -16,7 +16,8 @@ The CLI returns:
 clear; cargo make dev
 ```
 
-and then use the example how run it in the last 4th line. Like this:
+and then use the example of how to run it in the last 4th line on the screen.  
+Something like this:  
 
 ```bash
 target/debug/cargo_reg_local thread
