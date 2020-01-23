@@ -1,0 +1,4 @@
+var N=null,E="",T="t",U="u",searchIndex={};
+var R=["cargo_reg_local","string"];
+searchIndex["cargo_reg_local"]={"doc":R[0],"i":[[5,"main",R[0],"The CLI program starts here. Linux only because of file…",N,[[]]],[5,"get_versions",E,"Get versions from the local cache of the crates.io index.  ",N,[[["str"]],[[R[1]],["vec",[R[1]]]]]],[5,"search_crates",E,"Search local crates.io index cache for a crate name that…",N,[[["str"]],["vec"]]],[5,"search_file_name_recursive",E,"Search for files_names containing a substring, recursive.  ",N,[[["str"],["path"],["vec"]]]]],"p":[]};
+initSearch(searchIndex);addSearchOptions(searchIndex);
