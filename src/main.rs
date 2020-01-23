@@ -7,10 +7,11 @@
 use ansi_term::Colour::{Green, Red, Yellow};
 use clap::{App, Arg};
 use dirs;
+use regex::Regex;
 use std::env;
 use std::fs;
 use std::path::Path;
-//use unwrap::unwrap;
+use unwrap::unwrap;
 //endregion
 
 #[allow(clippy::print_stdout, clippy::integer_arithmetic)]
@@ -44,12 +45,18 @@ fn main() {
         println!("found: {}", Green.paint(&found));
         if !found.is_empty() {
             //read the content and maybe deserialize it somehow
+            let file_content = unwrap!(fs::read_to_string(found));
+            //I will use regex to find all "vers": "0.3.3",
+            let re = Regex::new(r#""vers":"(.*?)""#).unwrap();
+            for cap in re.captures_iter(file_content) {
+                println!("version: {}", &cap[1]);
+            }
         }
     }
 }
 
-/// find file recursive
-/// TODO: return result and errors. Now I return always empty string
+/// find file recursive (the first file_name in the subdirs)
+/// It returns empty string if it does not find it or any error.
 fn find_file_recursive(dir: &Path, file_name: &str) -> String {
     if dir.is_dir() {
         //println!("This is dir: {:?}", dir.file_name());
@@ -60,33 +67,20 @@ fn find_file_recursive(dir: &Path, file_name: &str) -> String {
             if path.is_dir() {
                 let ret_val = find_file_recursive(&path, file_name);
                 if !ret_val.is_empty() {
+                    //the file name is found
                     return ret_val;
                 }
-            } else if path
-                .file_name()
-                .unwrap()
-                .to_os_string()
-                .into_string()
-                .unwrap()
-                == file_name
-            {
+            } else if path.file_name().unwrap().to_str().unwrap() == file_name {
                 println!("Found it: {:?}", path);
                 return path.to_str().unwrap().to_owned();
             } else {
-                //println!("entry: {:?}", path.file_name())
                 //nothing
             }
         }
     } else {
-        println!("Path is not a directory: {:?}", dir);
+        println!("Error: Path is not a directory: {:?}", dir);
         return "".to_owned();
-        /*
-        Err(format!(
-            "Path is not a directory: {:?}",
-            dir.file_name().unwrap()
-        ))
-        */
     }
-    //println!("File_name {} not in here : {:?}",file_name,dir.file_name().unwrap());
+    //the file is not in this directory
     return "".to_owned();
 }
