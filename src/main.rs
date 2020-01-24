@@ -1,28 +1,27 @@
 //region: lmake_readme insert "readme.md"
 //! # cargo_reg_local
-//! 
+//!
 //! Find data from crates.io registry index in local cache.  
 //! For now on linux only. The folder of the cache is this:  `~\.cargo\registry\index\github.com-1ecc6299db9ec823\.cache\`  
-//! 
+//!
 //! The only argument is a crate name or a substring of the crate name.  
-//! 
+//!
 //! The CLI returns:  
-//! 
+//!
 //! 1. a list of versions for a given crate_name  
 //! 2. all the crate_names (and last version) that contain the given substring  
-//! 
+//!
 //! ## Build and run
-//! 
+//!
 //! ```bash
 //! clear; cargo make dev
 //! ```
-//! 
+//!
 //! and then use the example how run it in the last 4th line. Like this:
-//! 
+//!
 //! ```bash
 //! target/debug/cargo_reg_local thread
 //! ```
-
 
 //endregion: lmake_readme insert "readme.md"
 
@@ -55,15 +54,26 @@ fn main() {
         .get_matches();
 
     if let Some(crate_name) = matches.value_of("crate_name") {
-        println!("Crate name or substring: {}", Yellow.paint(crate_name));
+        println!(
+            "{} {}",
+            Yellow.paint("Crate name or substring:"),
+            Yellow.paint(crate_name)
+        );
 
         let versions = get_versions(&crate_name);
-        println!("Versions of crate '{}' {:#?}", crate_name, versions);
+        println!(
+            "{} '{}' {:#?}",
+            Red.paint("Versions of crate"),
+            Red.paint(crate_name),
+            versions
+        );
 
         let found_names = search_crates(crate_name);
         println!(
-            "Found crate names that contain '{}' {:#?}",
-            crate_name, found_names
+            "{} '{}' {:#?}",
+            Green.paint("Found crate names that contain"),
+            Green.paint(crate_name),
+            found_names
         );
     }
 }
