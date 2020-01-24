@@ -76,7 +76,7 @@ dependencies = [
 
 [[package]]
 name = "cargo_reg_local"
-version = "2020.124.1804"
+version = "2020.124.2030"
 dependencies = [
  "ansi_term 0.12.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "anyhow 1.0.26 (registry+https://github.com/rust-lang/crates.io-index)",

@@ -34,6 +34,8 @@ use regex::Regex;
 use std::env;
 use std::fs;
 use std::path::Path;
+use std::process::Command;
+
 //endregion
 
 /// The CLI program starts here.  
@@ -54,6 +56,13 @@ fn main() {
         .get_matches();
 
     if let Some(crate_name) = matches.value_of("crate_name") {
+        //update the local cache, just because we can
+        Command::new("cargo")
+            .arg("update")
+            .arg("--dry-run")
+            .status()
+            .expect("failed to execute process");
+
         println!(
             "{} {}",
             Yellow.paint("Crate name or substring:"),

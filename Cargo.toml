@@ -1,6 +1,6 @@
 [package]
 name = "cargo_reg_local"
-version = "2020.124.1804"
+version = "2020.124.2030"
 authors = ["Luciano Bestia <luciano.bestia@gmail.com>"]
 edition = "2018"
 description="find data from crates.io registry index in local cache"
