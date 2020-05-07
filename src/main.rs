@@ -1,4 +1,4 @@
-//region: lmake_readme insert "readme.md"
+// region: lmake_readme include "readme.md" //! A
 //! # cargo_reg_local
 //!
 //! Find data from crates.io registry index in local cache.  
@@ -23,7 +23,7 @@
 //! target/debug/cargo_reg_local thread
 //! ```
 
-//endregion: lmake_readme insert "readme.md"
+// endregion: lmake_readme include "readme.md" //! A
 
 //region: use statements
 use ansi_term::Colour::{Green, Red, Yellow};
